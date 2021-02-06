@@ -16,6 +16,4 @@ public class RegistryTest {
 
         Assert.assertEquals(RegisterResult.VALID, result);
     }
-
-    // TODO Complete with more test cases
 }
