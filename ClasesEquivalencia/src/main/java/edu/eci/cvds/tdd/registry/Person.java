@@ -35,6 +35,8 @@ public class Person {
      */
     public Person() {
         super();
+        setAlive(true);
+        setAge(18);
     }
 
     /**

@@ -35,7 +35,7 @@ mvn package
 mvn surefire:test
 ```
 
-![Compilar y ejecutar img](Img/eject.JPEG)
+![Compilar y ejecutar img](../Img/eject.JPEG)
 
 
 ### EJECRICIO "REGISTRADURIA"
@@ -54,16 +54,19 @@ se generaran los certificados electorales de aquellas personas cuyo voto sea val
  - Verificar que el usuario este vivo:
 ```
 Person p = new Person();
-assertEquals(true, p.isAlive());
+p.setAlive(false);
+Registry result = new Registry();
+assertEquals(RegistryResult.DEAD, result.registervoter(p));
 ```
- - Verificar que el usuario sea mayor de edad:
+ - Verificar que el usuario este vivo y sea menor de edad:
 ```
 Person p = new Person();
 p.setAge(10);
+p.setAlive(true);
 Registry result = new Registry();
 assertEquals(RegistryResult.UNDERAGE, result.registerVoter(p));
 ```
- - Verificar que la edad sea validad:
+ - Verificar que la edad sea invalida (menor a cero, mayor que 125):
 ```
 Person p = new Person();
 p.setAge(-1);
@@ -71,15 +74,48 @@ Registry result = new Registrty();
 assertEquals(RegistryResult.INVALID_AGE, result.registerVoter(p));
 ```
 
- - Verificar que la identificación sea valida:
+```
+Person p = new Person();
+p.setAge(126);
+Registry result = new Registrty();
+assertEquals(RegistryResult.INVALID_AGE, result.registerVoter(p));
+```
+
+```
+Person p = new Person();
+p.setAge(0);
+Registry result = new Registrty();
+assertEquals(RegistryResult.INVALID_AGE, result.registerVoter(p));
+```
+
+```
+Person p = new Person();
+p.setAge(1231246);
+Registry result = new Registrty();
+assertEquals(RegistryResult.INVALID_AGE, result.registerVoter(p));
+```
+
+ - Verificar que la identificación es invalida (menor a cero, logitud mayor a 13 digitos):
 ```
 Person p = new Person();
 p.setId(-1234);
 Registry result = new Registry();
-assertEquals(RegistryResult.VALID_ID, result.registerVoter(p));
+assertEquals(RegistryResult.INVALID_ID, result.registerVoter(p));
 ```
 
- - Verificar que el documento no este duplicado
+Person p = new Person();
+p.setId(12345678912346);
+Registry result = new Registry();
+assertEquals(RegistryResult.INVALID_ID, result.registerVoter(p));
+```
+
+Person p = new Person();
+p.setId(-1234523542326);
+Registry result = new Registry();
+assertEquals(RegistryResult.INVALID_ID, result.registerVoter(p));
+```
+
+ - Verificar que el documento esté duplicado
 ```
 Person p1,p2 = new Person(), new Person();
 p1.setId(123);
@@ -88,3 +124,6 @@ RegistryResult result = new Registry();
 result.registerVoter(p1);
 assertEquals(RegistryResult.DUPLICATED, result.registerVoter(p2));
 ```
+
+Y vemos el resultado de las pruebas correctamente
+![test ok](../Img/testOk.PNG)
