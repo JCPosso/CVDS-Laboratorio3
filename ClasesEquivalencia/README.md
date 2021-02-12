@@ -127,3 +127,26 @@ assertEquals(RegistryResult.DUPLICATED, result.registerVoter(p2));
 
 Y vemos el resultado de las pruebas correctamente
 ![test ok](../Img/testOk.PNG)
+
+### **EJERCICIO "DESCUENTO DE TARIFAS"**
+### REALIZAR DISEÑO DE PRUEBAS
+
+```
+calcular la tarifa de cada billete según el trayecto, la antelación
+en la que se obtiene el billete y la edad del pasajero, de acuerdo
+con la normativa 005.
+@param tarifaBase valor base del vuelo
+@param diasAntelacion dias de antelación del vuelo
+@param edad - edad del pasajero
+@throws ExcepcionParametrosInvalidos [XXXXXXXXXXXXXXXXXXXXXXXXXXX]
+
+public long calculoTarifa(long tarifaBase, int diasAntelacion, int edad)
+```
+
+### Tabla prueba
+
+| columna 1 | columna 2 | columna 3 |
+| ------|-----|-----|
+| Italic  	| \*Text\* 	| *This is italic* 	|
+| Bold  	| \*\*Bold\*\* 	| **This is bold** 	|
+| Inline links 	| \[Description text\](url here) 	| A [link](http://www.github.com) 	|
