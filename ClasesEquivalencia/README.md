@@ -147,9 +147,21 @@ public long calculoTarifa(long tarifaBase, int diasAntelacion, int edad)
 
 | Número | Clase de equivalencia | Resultado |
 | ------|-----|-----|
-| 1 | Verificar que la tarifa base sea invalida | incorrecto |
-| 2 | Verificar que los dias de antelacion sean invalidos | incorrecto |
-| 3 | Verificar que la edad sea invalida | incorrecto	|
+| 1 | Verificar que la tarifa base sea <= 0 | incorrecto |
+| 2 | Verificar que el descuento se aplique a un menor de 18   | correcto |
+| 3 | Verificar que el descuento se aplique a un mayor de 65 | correcto |
+| 4 | Verificar que el descuento no se aplique a un joven de 25 | correcto |
+| 5 | Verificar que el descuento se aplique solamente por edad | correcto |
+| 6 | Verificar que el descuento se aplique solamente por dias de antelacion | correcto |
+| 7 | Verificar que el descuento se aplique con dias negativos | incorrecto |
+| 8 | Verificar que el descuento se aplique con dias de antelacion mayor a 365 | incorrecto |
+| 9 | Verificar que el descuento se aplique a los 20 dias o mas | correcto |
+| 10 | Verificar que el descuento se aplique a mayores de 126 años | incorrecto |
+| 11 | Verificar que el descuento se aplique a menores de 0 años | incorrecto |
+| 12 | Verificar que la edad sea menor o igual que cero | incorrecto |
+| 13 | Verificar que la edad sea mayor que 126 | incorrecto |
+| 14 | Verificar que los descuentos sean acumulativos | correcto |
+| 15 | Verificar que no se haga el descuento si no cumple la norma 005 | correcto |
 
 ### Casos de prueba por clases de equivalencia
 - Verificar que la tarifa base sea invalida
@@ -179,15 +191,15 @@ public long calculoTarifa(long tarifaBase, int diasAntelacion, int edad)
 ### Limite o fronteras
 
 - tarifaBase = [35000, 55000000]
-- diasAntelacion = {0, 20, 365}
-- edad = [0, 125]
+- diasAntelacion = [0, 20] u [20, 365]
+- edad = [0, 18] u [66,125]
 
 ### Casos de prueba
 - Verificar que la tarifa base sea invalida (menor o igual que 0, mayor que 55 millones)
-	- tarifaBase <= 0 
-	- tarifaBase >= 56000000 
+	- tarifaBase == 0 
 	- tarifaBase == -1 
 	- tarifaBase == 56M
+	- tarifaBase == 55M
 - Verificar que los dias de antelacion sean invalidos (dias negativos, mas dias de los que tra el año)
 	- diasAntelacion == -1 
 	- diasAntelacion == -365 
@@ -195,6 +207,34 @@ public long calculoTarifa(long tarifaBase, int diasAntelacion, int edad)
 	- diasAntelacion == 1000
 - Verificar que la edad sea invalida
 	- edad == -10
+	- edad == -1
 	- edad == 0
 	- edad == 126
 	- edad == 1000
+- Verificar que el descuento sea valido por edad (cumpla los requisitos, este en la norma)
+	- edad == 5
+	- edad == 17
+	- edad == 66
+	- edad == 67
+	- edad == 125
+- Verificar que el descuento sea valido por dias de antelacion (cumpla los rquisitos, este en la norma)
+	- diasAntelacion == 20
+	- diasAntelacion == 21
+	- diasAntelacion == 364
+	- diasAntelacion == 365
+- Verificar que el descuento sea acumulativo
+	- diasAntelacion == 20 && edad == 17
+	- diasAntelacion == 21 && edad == 5
+	- diasAntelacion == 21 && edad == 66
+	- diasAntelacion == 21 && edad == 67
+	- diasAntelacion == 364 && edad == 17
+	- diasAntelacion == 364 && edad == 66
+	- diasAntelacion == 364 && edad == 67
+	- diasAntelacion == 365 && edad == 5
+	- diasAntelacion == 365 && edad == 125
+	- diasAntelacion == 20 && edad == 124
+
+
+### IMPLEMENTACION DE LAS PRUEBAS
+
+![](Img/finalTest.PNG)
