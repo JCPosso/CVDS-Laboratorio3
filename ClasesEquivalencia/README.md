@@ -143,10 +143,58 @@ con la normativa 005.
 public long calculoTarifa(long tarifaBase, int diasAntelacion, int edad)
 ```
 
-### Tabla prueba
+### Clases de equivalencia
 
-| columna 1 | columna 2 | columna 3 |
+| Número | Clase de equivalencia | Resultado |
 | ------|-----|-----|
-| Italic  	| \*Text\* 	| *This is italic* 	|
-| Bold  	| \*\*Bold\*\* 	| **This is bold** 	|
-| Inline links 	| \[Description text\](url here) 	| A [link](http://www.github.com) 	|
+| 1 | Verificar que la tarifa base sea invalida | incorrecto |
+| 2 | Verificar que los dias de antelacion sean invalidos | incorrecto |
+| 3 | Verificar que la edad sea invalida | incorrecto	|
+
+### Casos de prueba por clases de equivalencia
+- Verificar que la tarifa base sea invalida
+	- Parametros: 
+		- tarifaBase = -10000
+		- diasAntelacion = 0
+		- edad = 50
+	- Resultado esperado:
+		- ExcepcionParametrosInvalidos [tarifaBase]
+
+- Verificar que los dias de antelacion sean invalidos
+	- Parametros: 
+		- tarifaBase = 250000
+		- diasAntelacion = -10
+		- edad = 50
+	- Resultado esperado:
+		- ExcepcionParametrosInvalidos [diasAntelacion]
+
+- Verificar que la edad sea invalida
+	- Parametros: 
+		- tarifaBase = 250000
+		- diasAntelacion = 5
+		- edad = -10
+	- Resultado esperado:
+		- ExcepcionParametrosInvalidos [edad]
+
+### Limite o fronteras
+
+- tarifaBase = [35000, 55000000]
+- diasAntelacion = {0, 20, 365}
+- edad = [0, 125]
+
+### Casos de prueba
+- Verificar que la tarifa base sea invalida (menor o igual que 0, mayor que 55 millones)
+	- tarifaBase <= 0 
+	- tarifaBase >= 56000000 
+	- tarifaBase == -1 
+	- tarifaBase == 56M
+- Verificar que los dias de antelacion sean invalidos (dias negativos, mas dias de los que tra el año)
+	- diasAntelacion == -1 
+	- diasAntelacion == -365 
+	- diasAntelacion == 366 (no biciesto) 
+	- diasAntelacion == 1000
+- Verificar que la edad sea invalida
+	- edad == -10
+	- edad == 0
+	- edad == 126
+	- edad == 1000
