@@ -95,7 +95,7 @@ Registry result = new Registrty();
 assertEquals(RegistryResult.INVALID_AGE, result.registerVoter(p));
 ```
 
- - Verificar que la identificación es invalida (menor a cero, logitud mayor a 13 digitos):
+ - Verificar que la identificaciÃ³n es invalida (menor a cero, logitud mayor a 13 digitos):
 ```
 Person p = new Person();
 p.setId(-1234);
@@ -115,7 +115,7 @@ Registry result = new Registry();
 assertEquals(RegistryResult.INVALID_ID, result.registerVoter(p));
 ```
 
- - Verificar que el documento esté duplicado
+ - Verificar que el documento estÃ© duplicado
 ```
 Person p1,p2 = new Person(), new Person();
 p1.setId(123);
@@ -129,14 +129,14 @@ Y vemos el resultado de las pruebas correctamente
 ![test ok](../Img/testOk.PNG)
 
 ### **EJERCICIO "DESCUENTO DE TARIFAS"**
-### REALIZAR DISEÑO DE PRUEBAS
+### REALIZAR DISEÃ‘O DE PRUEBAS
 
 ```
-calcular la tarifa de cada billete según el trayecto, la antelación
+calcular la tarifa de cada billete segÃºn el trayecto, la antelaciÃ³n
 en la que se obtiene el billete y la edad del pasajero, de acuerdo
 con la normativa 005.
 @param tarifaBase valor base del vuelo
-@param diasAntelacion dias de antelación del vuelo
+@param diasAntelacion dias de antelaciÃ³n del vuelo
 @param edad - edad del pasajero
 @throws ExcepcionParametrosInvalidos [XXXXXXXXXXXXXXXXXXXXXXXXXXX]
 
@@ -145,7 +145,7 @@ public long calculoTarifa(long tarifaBase, int diasAntelacion, int edad)
 
 ### Clases de equivalencia
 
-| Número | Clase de equivalencia | Resultado |
+| NÃºmero | Clase de equivalencia | Resultado |
 | ------|-----|-----|
 | 1 | Verificar que la tarifa base sea <= 0 | incorrecto |
 | 2 | Verificar que el descuento se aplique a un menor de 18   | correcto |
@@ -156,8 +156,8 @@ public long calculoTarifa(long tarifaBase, int diasAntelacion, int edad)
 | 7 | Verificar que el descuento se aplique con dias negativos | incorrecto |
 | 8 | Verificar que el descuento se aplique con dias de antelacion mayor a 365 | incorrecto |
 | 9 | Verificar que el descuento se aplique a los 20 dias o mas | correcto |
-| 10 | Verificar que el descuento se aplique a mayores de 126 años | incorrecto |
-| 11 | Verificar que el descuento se aplique a menores de 0 años | incorrecto |
+| 10 | Verificar que el descuento se aplique a mayores de 126 aÃ±os | incorrecto |
+| 11 | Verificar que el descuento se aplique a menores de 0 aÃ±os | incorrecto |
 | 12 | Verificar que la edad sea menor o igual que cero | incorrecto |
 | 13 | Verificar que la edad sea mayor que 126 | incorrecto |
 | 14 | Verificar que los descuentos sean acumulativos | correcto |
@@ -200,7 +200,7 @@ public long calculoTarifa(long tarifaBase, int diasAntelacion, int edad)
 	- tarifaBase == -1 
 	- tarifaBase == 56M
 	- tarifaBase == 55M
-- Verificar que los dias de antelacion sean invalidos (dias negativos, mas dias de los que tra el año)
+- Verificar que los dias de antelacion sean invalidos (dias negativos, mas dias de los que tra el aÃ±o)
 	- diasAntelacion == -1 
 	- diasAntelacion == -365 
 	- diasAntelacion == 366 (no biciesto) 
@@ -237,4 +237,4 @@ public long calculoTarifa(long tarifaBase, int diasAntelacion, int edad)
 
 ### IMPLEMENTACION DE LAS PRUEBAS
 
-![](Img/finalTest.PNG)
+![](../Img/finalTest.PNG)
